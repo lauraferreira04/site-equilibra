@@ -1,8 +1,10 @@
-const respostas = require('../models/resposta');
+const respostas = []; // array "universo" de respostas
 
 const salvarResposta = (req, res) => {
-  respostas.push(req.body); // adiciona a resposta enviada pelo front
-  res.send('Resposta salva com sucesso!');
+  const payload = req.body;
+  respostas.push(payload); // adiciona a resposta enviada pelo front
+  console.log('Nova resposta recebida:', payload); // confirma no backend
+  res.send('Respostas recebidas com sucesso!');
 };
 
-module.exports = { salvarResposta };
+module.exports = { salvarResposta, respostas };

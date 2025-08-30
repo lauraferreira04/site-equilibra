@@ -14,6 +14,6 @@ const estatisticasRoutes = require('./routes/estatisticas');
 
 app.use('/questionarios', questionariosRoutes);
 app.use('/respostas', respostasRoutes);
-app.use('/estatisticas/email', estatisticasRoutes);
+app.use('/estatisticas', estatisticasRoutes);
 
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));

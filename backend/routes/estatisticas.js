@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { enviarEstatisticasPorEmail } = require('../controllers/estatisticasController');
+const { obterEstatisticas } = require('../controllers/estatisticasController');
 
-router.post('/', enviarEstatisticasPorEmail); // POST /estatisticas/email
+router.get('/:id', obterEstatisticas); // POST /estatisticas
 
 module.exports = router;
