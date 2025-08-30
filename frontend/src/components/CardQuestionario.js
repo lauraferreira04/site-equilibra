@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
-import EmailPopup from './EmailPopup';
+import FormularioQuestionario from './FormularioQuestionario';
+import Estatisticas from './Estatisticas';
 
 const CardQuestionario = ({ questionario }) => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [responder, setResponder] = useState(false);
+  const [verEstatisticas, setVerEstatisticas] = useState(false);
+
+  if(responder){
+    return <FormularioQuestionario questionarioId={questionario.id} voltar={() => setResponder(false)} />;
+  }
+  if (verEstatisticas) {
+    return <Estatisticas questionarioId={questionario.id} voltar={() => setVerEstatisticas(false)} />;
+  }
 
   return (
     <div style={{
@@ -13,14 +22,10 @@ const CardQuestionario = ({ questionario }) => {
     }}>
       <h2>{questionario.titulo}</h2>
       <p>{questionario.descricao}</p>
-      <button onClick={() => alert('Responder questionário')}>
-        Responder
+      <button onClick={() => setResponder(true)}>Responder</button>    
+      <button onClick={() => setVerEstatisticas(true)} style={{ marginLeft: '10px' }}>
+        Ver Estatísticas
       </button>
-      <button onClick={() => setShowPopup(!showPopup)} style={{ marginLeft: '10px' }}>
-        Receber Estatísticas
-      </button>
-
-      {showPopup && <EmailPopup questionarioId={questionario.id} />}
     </div>
   );
 };
