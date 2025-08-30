@@ -4,17 +4,16 @@ const app = express();
 const PORT = 5000;
 
 app.use(cors());                // <- habilita CORS
+app.use(express.json());
 
-// Rota inicial
-app.get("/", (req, res) => {
-  res.send("Backend funcionando 🚀");
-});
+// Rotas
 
-// Endpoint extra
-app.get("/api/hello", (req, res) => {
-  res.json({ message: "Olá do backend! 😎" });
-});
+const questionariosRoutes = require('./routes/questionarios');
+const respostasRoutes = require('./routes/respostas');
+const estatisticasRoutes = require('./routes/estatisticas');
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
+app.use('/questionarios', questionariosRoutes);
+app.use('/respostas', respostasRoutes);
+app.use('/estatisticas/email', estatisticasRoutes);
+
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
