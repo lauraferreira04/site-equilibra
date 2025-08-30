@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import CardQuestionario from './components/CardQuestionario';
 
 function App() {
-  const [message, setMessage] = useState("");
+  const [questionarios, setQuestionarios] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/hello")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message))
-      .catch((err) => console.error(err));
+    fetch('http://localhost:5000/questionarios') // backend na porta 5000
+      .then(res => res.json())
+      .then(data => setQuestionarios(data))
+      .catch(err => console.error(err));
   }, []);
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1>Frontend React</h1>
-      <p>Mensagem do backend: {message || "Carregando..."}</p>
+    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+      <h1>Equilibra - Questionários de Saúde Mental</h1>
+      {questionarios.map(q => (
+        <CardQuestionario key={q.id} questionario={q} />
+      ))}
     </div>
   );
 }
