@@ -1,7 +1,10 @@
 const express = require("express");
+const cors = require("cors");
+
 const corsOptions = {
-  origin: 'https://lauraferreira04.github.io', // front hospedado
-  optionsSuccessStatus: 200
+  origin: 'https://lauraferreira04.github.io', // seu frontend hospedado no GitHub Pages
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -11,6 +14,7 @@ const prisma = new PrismaClient();
 
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // preflight
 app.use(express.json());
 
 // Rotas
