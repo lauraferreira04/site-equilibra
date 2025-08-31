@@ -5,7 +5,7 @@ function App() {
   const [questionarios, setQuestionarios] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/questionarios') // backend na porta 5000
+    fetch('https://site-equilibra.onrender.com') // backend na porta 5000
       .then(res => res.json())
       .then(data => setQuestionarios(data))
       .catch(err => console.error(err));
