@@ -4,7 +4,7 @@ const Estatisticas = ({ questionarioId, voltar }) => {
   const [estatisticas, setEstatisticas] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/estatisticas/${questionarioId}`)
+    fetch(`https://site-equilibra-backend.onrender.com/questionarios/${questionarioId}`)
       .then(res => res.json())
       .then(data => {
         console.log('Estatísticas recebidas:', data); // <--- veja se chega algo
