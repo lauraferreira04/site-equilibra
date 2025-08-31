@@ -1,0 +1,39 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Questionario {
+  id         Int        @id @default(autoincrement())
+  titulo     String
+  descricao  String
+  perguntas  Pergunta[]
+  respostas  Resposta[]
+}
+
+model Pergunta {
+  id            Int       @id @default(autoincrement())
+  questionario  Questionario @relation(fields: [questionarioId], references: [id])
+  questionarioId Int
+  texto         String
+  tipo          String       // "escala" ou "multipla"
+  ordem         Int
+  opcoes        String?      // JSON com opções, se for múltipla escolha
+  respostas     Resposta[]   @relation("PerguntaRespostas")
+}
+
+model Resposta {
+  id            Int       @id @default(autoincrement())
+  questionario  Questionario @relation(fields: [questionarioId], references: [id])
+  questionarioId Int
+  pergunta      Pergunta? @relation("PerguntaRespostas", fields: [perguntaId], references: [id])
+  perguntaId    Int?
+  respostaTexto String
+  createdAt     DateTime  @default(now())
+}

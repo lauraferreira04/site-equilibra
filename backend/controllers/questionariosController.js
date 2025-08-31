@@ -1,14 +1,27 @@
-const questionarios = require('../models/questionario');
-const perguntas = require('../models/pergunta');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-const listarQuestionarios = (req, res) => {
-  res.json(questionarios); // envia todos os questionários para o front
+const listarQuestionarios = async (req, res) => {
+  try {
+    const questionarios = await prisma.questionario.findMany(); // pega todos
+    res.json(questionarios);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: 'Erro ao listar questionários' });
+  }
 };
 
-const listarPerguntas = (req, res) => {
-  const id = parseInt(req.params.id);
-  const perguntasDoQuestionario = perguntas.filter(p => p.questionarioId === id);
-  res.json(perguntasDoQuestionario);
+const listarPerguntas = async (req, res) => {
+  const questionarioId = parseInt(req.params.id);
+  try {
+    const perguntas = await prisma.pergunta.findMany({
+      where: { questionarioId: questionarioId },
+    });
+    res.json(perguntas);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: 'Erro ao listar perguntas' });
+  }
 };
 
 module.exports = { listarQuestionarios, listarPerguntas };
