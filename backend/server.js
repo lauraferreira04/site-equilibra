@@ -28,6 +28,7 @@ app.use('/questionarios', questionariosRoutes);
 app.use('/respostas', respostasRoutes);
 app.use('/estatisticas', estatisticasRoutes);
 
+app.get('/', (req, res) => res.send('Hello World'));
 
 // Rota catch-all para 404 (deve ser a última)
 app.use((req, res) => {
