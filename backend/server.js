@@ -1,17 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Configuração do CORS
 const corsOptions = {
-  origin: '*', // qualquer origem pode acessar
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
-
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
-
-const app = express();
-const PORT = process.env.PORT || 5000;
 
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
