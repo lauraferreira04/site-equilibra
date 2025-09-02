@@ -6,7 +6,7 @@ const FormularioQuestionario = ({ questionarioId, voltar }) => {
   const [mensagem, setMensagem] = useState('');
 
   useEffect(() => {
-    fetch(`https://site-equilibra-backend.onrender.com/questionarios/${questionarioId}`)
+    fetch(`https://site-equilibra-backend.onrender.com/respostas`)
       .then(res => res.json())
       .then(data => setPerguntas(data))
       .catch(err => console.error(err));
