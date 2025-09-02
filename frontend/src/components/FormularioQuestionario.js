@@ -6,7 +6,7 @@ const FormularioQuestionario = ({ questionarioId, voltar }) => {
   const [mensagem, setMensagem] = useState('');
 
   useEffect(() => {
-    fetch(`https://site-equilibra-backend.onrender.com/respostas`)
+  fetch(`https://site-equilibra-backend.onrender.com/questionarios/${questionarioId}`)
       .then(res => res.json())
       .then(data => setPerguntas(data))
       .catch(err => console.error(err));
@@ -43,7 +43,7 @@ const FormularioQuestionario = ({ questionarioId, voltar }) => {
       }))
     };
 
-    fetch(`https://site-equilibra-backend.onrender.com/questionarios/${questionarioId}`, {
+    fetch(`https://site-equilibra-backend.onrender.com/respostas`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
