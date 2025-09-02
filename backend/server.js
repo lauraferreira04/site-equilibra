@@ -2,10 +2,13 @@ const express = require("express");
 const cors = require("cors");
 
 const corsOptions = {
-  origin: 'https://lauraferreira04.github.io', // seu frontend hospedado no GitHub Pages
+  origin: '*', // qualquer origem pode acessar
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,9 +16,6 @@ const PORT = process.env.PORT || 5000;
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Middleware
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // preflight
 app.use(express.json());
 
 // Rotas
