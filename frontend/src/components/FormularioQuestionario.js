@@ -6,12 +6,14 @@ const FormularioQuestionario = ({ questionarioId, voltar }) => {
   const [mensagem, setMensagem] = useState('');
 
   useEffect(() => {
-  fetch(`https://site-equilibra.onrender.com/questionarios/${questionarioId}`)
+    fetch(`https://site-equilibra.onrender.com/questionarios/${questionarioId}`)
       .then(res => res.json())
-      .then(data => setPerguntas(data))
+      .then(data => {
+        console.log(data); // para conferir a estrutura que vem do backend
+        setPerguntas(data.perguntas || []); // pega o array de perguntas
+      })
       .catch(err => console.error(err));
   }, [questionarioId]);
-
 
 
   const handleChange = (perguntaId, valor) => {
