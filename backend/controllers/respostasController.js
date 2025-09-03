@@ -1,4 +1,4 @@
-const prisma = require('../prisma');
+const prisma = require('../prismaClient');
 
 const salvarResposta = async (req, res) => {
   const { questionarioId, respostas } = req.body;

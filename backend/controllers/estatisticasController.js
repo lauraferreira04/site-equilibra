@@ -1,4 +1,4 @@
-const prisma = require('../prisma');
+const prisma = require('../prismaClient');
 
 const obterEstatisticas = async (req, res) => {
   const questionarioId = parseInt(req.params.id);

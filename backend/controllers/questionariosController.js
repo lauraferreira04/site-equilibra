@@ -1,4 +1,4 @@
-const prisma = require('../prisma');
+const prisma = require('../prismaClient');
 
 // Listar todos os questionários
 const listarQuestionarios = async (req, res) => {
