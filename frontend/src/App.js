@@ -12,8 +12,25 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <h1>Equilibra - Questionários de Saúde Mental</h1>
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      
+      {/* Header com logo + título */}
+      <header style={{
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '20px'
+      }}>
+        <h1 style={{ display: 'flex', alignItems: 'center' }}>
+          <img 
+            src={`${process.env.PUBLIC_URL}/logo.png`} 
+            alt="Logo Equilibra"
+            style={{ width: '80px', height: '80px', marginRight: '15px' }}
+          />
+          Equilibra - Questionários de Saúde Mental
+        </h1>
+      </header>
+
+      {/* Cards */}
       {questionarios.map(q => (
         <CardQuestionario key={q.id} questionario={q} />
       ))}

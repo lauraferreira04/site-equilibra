@@ -55,12 +55,19 @@ const FormularioQuestionario = ({ questionarioId, voltar }) => {
   };
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '20px', marginTop: '10px', borderRadius: '8px' }}>
-      <h2>Questionário</h2>
+    <div style={{
+      border: '1px solid #ddd',
+      padding: '20px',
+      marginTop: '10px',
+      borderRadius: '12px',
+      boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+      backgroundColor: '#fafafa'
+    }}>
+      <h2 style={{ marginBottom: '15px', color: '#333' }}>Questionário</h2>
 
       {perguntas.map(p => (
-        <div key={p.id} style={{ marginBottom: '15px' }}>
-          <p>{p.ordem}. {p.texto}</p>
+        <div key={p.id} style={{ marginBottom: '20px', padding: '10px', borderRadius: '8px', backgroundColor: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+          <p style={{ fontWeight: 'bold', color: '#444' }}>{p.ordem}. {p.texto}</p>
 
           {p.tipo === 'escala' && (
             <input
@@ -69,30 +76,65 @@ const FormularioQuestionario = ({ questionarioId, voltar }) => {
               max="5"
               value={respostas[p.id] || ''}
               onChange={e => handleChange(p.id, e.target.value)}
+              style={{ padding: '8px', borderRadius: '6px', border: '1px solid #ccc', width: '60px' }}
             />
           )}
 
-          {p.tipo === 'multipla' && p.opcoes && 
+          {p.tipo === 'multipla' && p.opcoes &&
             p.opcoes.split(',').map(op => (
-              <label key={op} style={{ display: 'block' }}>
+              <label key={op} style={{ display: 'block', marginTop: '5px', cursor: 'pointer' }}>
                 <input
                   type="radio"
                   name={`pergunta-${p.id}`}
                   value={op}
                   checked={respostas[p.id] === op}
                   onChange={() => handleChange(p.id, op)}
+                  style={{ marginRight: '8px' }}
                 />
                 {op}
               </label>
           ))}
-
         </div>
       ))}
 
-      <button onClick={handleSubmit}>Enviar respostas</button>
-      <button onClick={voltar} style={{ marginLeft: '10px' }}>Voltar</button>
+      <button 
+        onClick={handleSubmit}
+        style={{
+          padding: '10px 20px',
+          borderRadius: '8px',
+          border: 'none',
+          backgroundColor: '#4caf50',
+          color: '#fff',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          transition: 'background-color 0.2s',
+        }}
+        onMouseEnter={e => e.currentTarget.style.backgroundColor = '#45a049'}
+        onMouseLeave={e => e.currentTarget.style.backgroundColor = '#4caf50'}
+      >
+        Enviar respostas
+      </button>
 
-      {mensagem && <p>{mensagem}</p>}
+      <button 
+        onClick={voltar}
+        style={{
+          padding: '10px 20px',
+          borderRadius: '8px',
+          border: 'none',
+          backgroundColor: '#2196f3',
+          color: '#fff',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          marginLeft: '10px',
+          transition: 'background-color 0.2s',
+        }}
+        onMouseEnter={e => e.currentTarget.style.backgroundColor = '#1e88e5'}
+        onMouseLeave={e => e.currentTarget.style.backgroundColor = '#2196f3'}
+      >
+        Voltar
+      </button>
+
+      {mensagem && <p style={{ marginTop: '10px', color: '#d32f2f', fontWeight: 'bold' }}>{mensagem}</p>}
     </div>
   );
 };
