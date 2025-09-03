@@ -73,7 +73,7 @@ const FormularioQuestionario = ({ questionarioId, voltar }) => {
           )}
 
           {p.tipo === 'multipla' && p.opcoes && 
-            p.opcoes.map(op => (
+            p.opcoes.split(',').map(op => (
               <label key={op} style={{ display: 'block' }}>
                 <input
                   type="radio"
