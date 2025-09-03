@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/site-equilibra/static/css/main.c882c16a.css",
-    "main.js": "/site-equilibra/static/js/main.e39f92cd.js",
+    "main.js": "/site-equilibra/static/js/main.c24db413.js",
     "index.html": "/site-equilibra/index.html",
     "main.c882c16a.css.map": "/site-equilibra/static/css/main.c882c16a.css.map",
-    "main.e39f92cd.js.map": "/site-equilibra/static/js/main.e39f92cd.js.map"
+    "main.c24db413.js.map": "/site-equilibra/static/js/main.c24db413.js.map"
   },
   "entrypoints": [
     "static/css/main.c882c16a.css",
-    "static/js/main.e39f92cd.js"
+    "static/js/main.c24db413.js"
   ]
 }
