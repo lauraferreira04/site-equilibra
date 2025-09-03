@@ -23,7 +23,6 @@ const questionariosRoutes = require('./routes/questionarios');
 const respostasRoutes = require('./routes/respostas');
 const estatisticasRoutes = require('./routes/estatisticas');
 
-// Descomente as rotas quando estiver pronto para usá-las
 app.use('/questionarios', questionariosRoutes);
 app.use('/respostas', respostasRoutes);
 app.use('/estatisticas', estatisticasRoutes);
